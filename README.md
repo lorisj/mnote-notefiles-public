@@ -1,2 +1,2 @@
 # mnote-notefiles-public
-Repository for my mnote files
+Public repository for my mnote files on different topics.
