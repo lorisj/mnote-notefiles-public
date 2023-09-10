@@ -1,0 +1,11 @@
+%def(family_of_subsets)[set]
+    A family of subsets is a collection $\Omega \subseteq \P(X)$ of subsets of a set $X$.
+%def(topology)[family_of_subsets]
+    A topology is topology is a family $\tau$ of subsets of $X$ with:
+    %enum
+        %i $\emptyset, X \in \tau$
+        %i $\tau$ is closed under arbitrary unions
+        %i $\tau$ is closed under finite intersections
+
+%def(alexandroff_topology)[topology]
+    An Alexandroff topology, also sometimes called a complete sublattice is a topology that is closed under arbitrary intersections.

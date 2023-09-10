@@ -1,0 +1,30 @@
+# Orderings
+
+%def(preorder)[set, relation]
+    Consider
+    %enum
+        %i A set $X$
+        %i A relation $\prec \subseteq X^2$
+    $(X, \prec)$ is a preorder iff:
+    %enum
+        %i $\prec$ is reflexive
+        %neq
+            \forall_{x}^X x \prec x
+        %i $\prec$ is transitive
+        %neq
+            \forall_{x, y, z}^X x \prec y \land y \prec z \implies x \prec z
+    %res(preorder_is_small_category)[small_category]
+        A preorder is a small category.
+
+%def(partial_order)[preorder]
+    Consider 
+    %enum   
+        %i Preorder $\mathcal M =(X, \prec)$
+    $\mathcal M $ is a partial order iff:
+    %enum
+        %i A $\mathcal M$ is antisymmetric:
+        %neq
+            \forall_{x, y}^X x \prec y \land y \prec x \implies x = y
+
+%def(total_order)[partial_order]
+    A total order is a preorder $\prec$ on a set $X$ that is:

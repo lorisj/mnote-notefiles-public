@@ -1,0 +1,43 @@
+# Introduction
+In this note we discuss the basic concepts of the gradient, jacobian, nad hessian.
+
+# Gradient
+%def(gradient)
+    Consider a function $f: \R^n \to \R$. The gradient of the function $f$ is defined to be:
+    %neq
+        \nabla f(x) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \ldots, \frac{\partial f}{\partial x_n} \right]^T
+    %exp(simple-gradient)
+        %enum
+            %i Let $f(x) = x_1^2 + 2 x_2^2$. Then the gradient of $f$ is:
+            %neq
+                \nabla f(x) = \left[ 2 x_1, 4 x_2 \right]^T
+    %res(basic-gradient-properties)
+        %enum
+            %i $\nabla$ is linear.
+            %item
+                %i $\nabla r f(x) = r \nabla f(x)$ for $r \in \R$  
+                %i $\nabla (f + g)(x) = \nabla f(x) + \nabla g(x)$
+            %i Product Rule: $\nabla (f * g)(x) = f(x) \nabla g(x) + g(x) \nabla f(x)$
+            %i Chain Rule: $\nabla (f \circ g)(x) = \nabla f(g(x)) \nabla g(x)$
+
+
+# Jacobian
+%def(jacobian)
+    Consider a function $f: \R^n \to \R^m$. The jacobian of the function $f$ is defined to be:
+    %neq
+        J_f(\vec x) = \left[\begin{matrix} \frac{\partial f_1}{\partial x_1} &\ldots &   \frac{\partial f_1}{\partial x_n} \\ \vdots & \ddots & \vdots \\  \frac{\partial f_m}{\partial x_1} & \cdots &  \frac{\partial f_m}{\partial x_n} \end{matrix}\right]
+    Assuming that all of the partial derivatives exist.
+Just as the derivative allows us to approximatly linearize a single variable function
+%neq
+    f(x + \epsilon) \approx f(x) + f'(x)*\epsilon
+the Jacobian allows us to approximatly linearize a vector valued function
+%neq
+    f(x + \vec \epsilon) \approx f(x) + J_f(x)*\vec \epsilon
+
+
+# Hessian
+%def(hessian)
+    Let $f: \R^n \to \R$. The Hessian of $f$, is defined as:
+    %neq
+        \nabla^2 f \eqdef [\nabla^2 f]_{r,c} =  \left[\frac{\partial^2 f}{\partial x_r x_c }  \right]_{r,c}
+    If $f$ is twice continuously differentiable, then $\nabla^2 f$ is symmetric.

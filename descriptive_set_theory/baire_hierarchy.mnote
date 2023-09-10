@@ -1,0 +1,14 @@
+
+%res(baire_hierarchy_rational_indicator)[baire_hierarchy]
+    Let: 
+    %enum
+        %i $B(\R, \R)$ be the set of borel functions, i.e.
+        %neq
+            B(\R, \R) = \text{closure of } C(\R,\R) \text{ under sequential pointwise limits} 
+        %i $T(A) : \R^\R \to \R^\R$ be defined as closing under pointwise limits.
+    Then: 
+    %enum
+        %i $\chi_\Q : \R \to \{0,1\}$, the indicator function on $\Q \subseteq \R$ can be obtained in applying $T$ 2 steps. 
+    %dl
+    %pf
+        From $C(\R, \R)$ you can get better and better approximations of $\chi_q$ for every $q \in \Q$. This means that $T(C(\R,\R))$ contains $\chi_q$ for any $q \in \Q$. Furthermore you could do the same thing for any finite subset, so $\chi_{F}$ for any finite $F \subseteq \Q$ exists in $T(C(\R, \R))$. So by simply building any increasing sequence of $F$, this says that $\chi_\Q \in T^2(C(\R, \R))$. 

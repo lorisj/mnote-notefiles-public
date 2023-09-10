@@ -1,0 +1,61 @@
+
+# Monotone set operators
+%def(monotone_set_operator)[function]
+    A monotone set operator $T : \powerset{X} \to \powerset{X}$ is a function such that for all $A, B \subseteq X$:
+    %neq
+        A \subseteq B \implies T(A) \subseteq T(B)
+
+
+
+
+# Rank
+%def(rank)[preorder]
+    The rank of $(X, \prec)$ is defined as its Mostowski Collapse:
+    %neq
+        \rho_\prec (x) \eqdef \set{ \rho_\prec (y) | y \prec x }
+
+%def(T_rank)[monotone_set_operator]
+    Let $T$ be a monotone set operator. The $T$-rank of $(X, \prec)$ is defined as its Mostowski Collapse:
+    %neq
+        \rho_\prec^T (x) \eqdef \{ \rho_\prec^T (y) | y \prec x \} \cup T(\{ \rho_\prec^T (y) | y \prec x \})
+
+%res(knaster_tarski)[monotone_set_operator]
+    Let
+    %enum
+        %i $X$ be a set
+        %i $T : \P(X) \to \P(X)$ be a monotone set operator
+    Then
+    %enum
+        %i For each $A \subseteq X$ there is a smallest $\bar T(A) \subseteq X$ such that:
+        %enum
+            %i $A \subseteq \bar T(A) \subseteq T(\bar T(A))$
+    %dl
+    %pf
+        Just define:
+        %neq
+            \bar T(A) \eqdef \bigcap \{B \subseteq A | A \subseteq B, T(B) \subseteq B\}
+%def(finite_character)[monotone_set_operator]
+    Let $T : \P(X) \to \P(Y)$ be a monotone set operator. We say $T$ is of finite character if everything derived by $A$ is also derived from a finite part of $A$, i.e.:
+    %neq
+        T(A) = \bigcup_{\substack{F \subseteq A\\ F \text{ finite} }}
+%def(countable_character)[monotone_set_operator]
+    Let $T : \P(X) \to \P(Y)$ be a monotone set operator. We say $T$ is of countable character if everything derived by $A$ is also derived from a countable part of $A$, i.e.:
+    %neq
+        T(A) = \bigcup_{\substack{F \subseteq A\\ F \text{ countable} }}
+%res(finite_and_countable_character_stabilization)[monotone_set_operator,finite_character, countable_character]
+    Let:
+    %enum
+        %i $T : \P(X) \to \P(Y)$ be a monotone set operator that is of finite character. 
+        %i $A \subseteq X$ be arbitrary.
+    Then the sequence:
+    %neq
+        (A_{\alpha})_{\alpha \in \ON} : \ON &\mapsto  \P(X) \\ 
+        0 &\mapsto A\\
+        s + 1 &\mapsto A_s \cup T(A_s)\\
+        \text{limit ordinal }l &\mapsto \bigcup_{\beta < l} A_\beta
+    stabilizes at stage $\omega$, meaning:
+    %neq
+        A_\omega = A_{\omega + 1} = \ldots
+    Likewise if $T$ is of countable character, then:
+    %neq
+        A_{\omega_1} = A_{\omega_1 + 1} = \ldots

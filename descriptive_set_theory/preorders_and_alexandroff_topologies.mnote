@@ -1,0 +1,26 @@
+# Upwards closed sets
+
+%def(upwards_closed_sets)[preorder]
+    Let 
+    %enum
+        %i $\X = (X, \le^\X)$ be a preorder
+    Define the set of upwards closed sets of $\X$ as:
+    %neq
+        \U(\X) = U((X,\le^\X)) \eqdef \{U \subseteq X | U \text{ is $\le^X$-upwards closed}\}
+
+
+%def(specilization_preorder)[family_of_subsets]
+    
+    
+%res(preorder_is_alexandroff_topology)[preorder, alexandroff_topology]
+    Let:
+    %enum
+        %i $X$ be any set.
+    Then there exists a bijection:
+    %neq
+        \{\le \subseteq X^2 | \le \text{ is a preorder}\} \cong \{\mathcal A \subseteq \P(X) | \mathcal A \text{ is an Alexandroff topology}\}
+    Given by:
+    %neq
+        U(X,\cdot): \le &\mapsto \U((X,\le))\\
+        U^{-1}(X,\cdot): \mathcal A &\mapsto \le^{\mathcal A}
+    where $\le^{\mathcal A}$ is the specilization preorder of $\mathcal A$.

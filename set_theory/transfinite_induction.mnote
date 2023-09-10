@@ -1,0 +1,27 @@
+# Introduction
+In this document we give some results relating to transfinite induction. This includes defining the ordinal numbers, closure of monotone set operators, and principles of induction.
+
+
+
+%def(ordinal_numbers)[total_order]
+    A set $\alpha$ is said to be an ordinal if and only if one of the following equivalent conditions hold:
+    %enum
+        %i $\alpha$ is transitive, and $\in \subseteq \alpha \times \alpha$ is a well-ordering on $\alpha$.
+        %i $\alpha$ is transitive, and $\in \subseteq \alpha \times \alpha$ is a partial well-ordering on $\alpha$.
+
+%res(turning_any_binary_relation_into_equivalence_relation)[relation,equivalance_relation]
+    Let
+    %enum
+        %i $R\subseteq X^2$ be a binary relation.
+    Then define:
+    %enum
+        %i 
+        %neq
+            T(X) &: \P(X^2) \to \P(X^2)\\
+            T &: S \mapsto S \cup \{(x,x) \in X^2 | x \in \dom R \cup \ran R \}\\
+            &\cup \{(x,y) \in X^2 | yRx \}\\
+            &\cup \{(x,z) \in X^2 | xRyRz\}
+    Then $\bar T(R)$ is an equivalence relation on $X$.
+    %dl
+    %pf
+        By definition of $\bar T(R)$, if there is nothing more to add to satisfy transitivity, reflexivity or symmetry, then $\bar T(R)$ must be transitive, reflexive and symmetric, and thus is a equivalance relation.

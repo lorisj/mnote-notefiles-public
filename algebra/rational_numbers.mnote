@@ -1,0 +1,34 @@
+
+%def(rational_numbers)[integers]
+    The rational numbers are the smallest field (up to isomorphism) that contains the integers.
+    More formally, given:
+    %enum
+        %i $\Z$ as the integers
+    Define the rational numbers as:
+    %neq
+        (\Q, +^\Q, -^\Q, *^\Q, 0^\Q, 1^\Q, <^\Q)
+    where:
+    %enum
+        %i $\Q$ is the set of $\Z^2$ equivalance classes of the form:
+        %neq
+            (x_1, y_1) \sim (x_2, y_2) \iff x_1 *^\Z y_2 = x_2 *^\Z y_1
+        \linenote{This is equivalent to saying $p_1/q_1 = p_2 / q_2 \iff p_1 q_2 = p_2 q_1$. So from now on denote $\frac{x_1}{y_1}$ as $(x_1, y_1)$.}
+        %i $+^\Q$ is defined as: $\nice{\frac{x_1}{y_1} +^\Q \frac{x_2}{y_2} \eqdef \frac{x_1 *^\Z y_2 +^\Z x_2 *^\Z y_1}{y_1 *^\Z y_2}}$
+        %i $-^\Q$ is defined as: $\nice{-^\Q (\frac{x_1}{y_1}) \eqdef \frac{-^\Z(x_1)}{y_1}}$
+        %i $*^\Q$ is defined as: $\nice{\frac{x_1}{y_1} *^\Q \frac{x_2}{y_2} \eqdef \frac{x_1 *^\Z x_2}{y_1 *^\Z y_2}}$
+        %i $0^\Q$ is defined as: $\nice{\frac{0^\Z}{1^\Z}}$.
+        %i $1^\Q$ is defined as: $\nice{\frac{1^\Z}{1^\Z}}$.
+        %i $<^\Q$ is defined as: $\nice{\frac{x_1}{y_1} <^\Q \frac{x_2}{y_2} \iff x_1 *^\Z y_2 <^\Z x_2 *^\Z y_1}$
+%res(every_rational_number_is_emptyset_definable)[rational_numbers]
+    For any rational number $q = \frac{a}{b}$ for $a, b \in \Z$, $\{q\}$ is $\emptyset$-definable.
+    %dl
+    %pf
+        %neq
+            \{q\} &= \{c \in \Q | c *^\Q b = a\}\\
+            &= \left\{c \in \Q | c *^\Q \sum_{i=1}^b 1^\Q = \sum_{i=1}^a 1^\Q \right\}
+%res(rational_numbers_are_smallest_field_containing_the_integers)[characteristic, rational_numbers, field]
+    The rational numbers is the smallest field of characteristic zero that contains the integers.
+    %dl
+    %pf
+        Clearly the integers inject into $\Q$, so $\Q$ contains the integers. Because of this, $\Q$ has characteristic $0$. Since every rational number is $\emptyset$ definable, 
+        %todo Finish proof. Idea: Rational numbers are emptyset definable, this essentially means that there is nothing extra: Each rational number corresponds to the minimum amount of information needed to define it, i.e. each rational number exists only if it is guarenteed by the field axioms, which is the same as definable.

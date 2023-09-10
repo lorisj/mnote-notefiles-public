@@ -1,0 +1,52 @@
+%def(isolated_point)[topology]
+    Let
+    %enum
+        %i $\top$ be a topological space
+        %i $x \in X$
+        %i $S \subseteq X$
+    Then $x$ is an isolated point of $S$ iff
+    %neq
+        \{x\} \in \tau_{S \subseteq X}
+
+%def(perfect_space)[topology, closed_set, isolated_point]
+    Let 
+    %enum
+        %i $\top$ be a topological space.
+        %i $S \subseteq X$.
+    Then $\top$ is perfect iff
+    %enum
+        %i $S$ is closed
+        %i $S$ has no isolated points
+
+
+%res(simple_cantor_bendixson_theorem)[perfect_space, countable, real_numbers]
+    Let 
+    %enum
+        %i $X \subseteq \R$.
+    
+    Then there exists a partition:
+    %neq
+        X = C \sqcup K
+    such that:
+    %enum
+        %i $C$ is countable
+        %i $K$ is perfect
+    %dl
+    %pf
+        This proof uses %ref(ordinal_induction). 
+        We build a sequence $f : \ON \to \P(X)$ such that:
+        $$X_0 \supseteq X_1 \supseteq \ldots \supseteq X_\omega \supseteq \ldots$$
+        %neq
+            X_0 &\eqdef X\\
+            X_{a + 1} &\eqdef X_a \backslash \{x \in X_a \mid x \text{ is an isolated point of } X_a\}\\
+            X_l &\eqdef \bigcap_{a \in l} X_a
+        Note that $\ON$ is a proper class, but $\P(X)$ is a set, so this sequence is not injective, and thus must stop at some point. Let $n$ be the least ordinal such that $X_n = X_{n+1}$. Then we have:
+        %neq
+            X_n = X_{n+1} = X_{n+2} = \ldots
+        Since $\Q$ is dense in $\R$, this implies:
+        $\forall_a^\ON \forall_{x}^{X_a \backslash X_{a + 1}} $ you can find $q_1, q_2 \in \Q$ such that:
+        %neq
+            X_a \cap (q_1, q_2)_\R = \{x\}
+        Since $x$ is the unique point in $X_a \cap (q_1, q_2)_\R$, it is an isolated point of $X_a$. Thus $X_a$ is not perfect. Thus $\exists_{g}  C \injection[g] \Q^2$, and so $C$ is countable.
+    
+

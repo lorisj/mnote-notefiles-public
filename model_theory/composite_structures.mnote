@@ -1,0 +1,30 @@
+
+# Composite structures
+%def(product_structure)[L_structure]
+    Let
+    %enum
+        %i $\{\M_i\}_{i \in I}$ be a collection of $\mathcal L$ structures
+    Then define:
+    $\prod_{i \in I} \M_i$ to be the $\mathcal L$ structure with
+    %enum
+        %i
+        universe: 
+        %neq 
+            \prod_{i \in I} \dom \M_i
+        %i
+        function symbols:
+        %neq
+            f^{\prod_{i \in I} \M_i} = \prod_{i \in I} f^{\M_i} = (f^{\M_i}(\vec a))_{i \in I}
+        %i
+        relation symbols:
+        %neq
+            R^{\prod_{i \in I} \M_i} = \prod_{i \in I} R^{\M_i} = \{(a_i)_{i \in I} \mid \forall_i^I a_i \in R^{\M_i}\}
+
+
+%res(universal_horn_formulas_preserved_under_products)[universal_horn_formula,product_structure]
+    Let $\M_i$ be a collection of $\mathcal L$ structures, and let $\phi$ be a universal Horn formula. Then:
+    %neq
+        \prod_{i \in I} \M_i \models \phi \iff \forall_i^I \ \M_i \models \phi
+    %dl
+    %pf
+        %todo finish

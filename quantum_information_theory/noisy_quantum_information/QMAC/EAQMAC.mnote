@@ -1,0 +1,100 @@
+# Introduction
+
+Here we give a couple of notes for the EAQMAC, i.e. a quantum multi access channel with entanglement assist.
+
+
+# Prerequisites
+
+Recall that the capacity of any CQMAC channel $\sigma_{(.,.)}$ under message distribution $P_{s_x, s_z}$ is:
+
+%neq
+    \chi (\sigma_{(.,.)} ; P_{s_x, s_z}) &\eqdef H\left( \sum_{s_x} \sum_{s_z} P_{s_x, s_z} (s_x, s_z) \sigma_{(s_x,s_z)}\right) \label{eq:cqmac1}\\
+    &- \sum_{s_x}\sum_{s_z} P_{s_x,s_z}(s_x, s_z) H\left(\sigma_{(s_x,s_z)}\right) \label{eq:cqmac2}
+
+
+These are the assumptions for the rest of this document:
+%enum
+    %i [(A1)] $X_A, X_B, Z_A, Z_B$ are i.i.d.
+    %i [(A2)] $X_A, X_B, Z_A, Z_B$ are uniform.
+
+(A1) $\land$ (A2) $\implies$ $P_{s_x, s_z} (s_x, s_z) = \frac{1}{d^2}$, call this (R1).
+
+
+# Analysis
+
+
+## \ref{eq:cqmac1}
+Start with \ref{eq:cqmac1}:
+
+%eq
+    \ref{eq:cqmac1} &= H\left[\sum_{s_x} \sum_{s_z} \frac{1}{d^2} \sum_{x_A,x_B}\sum_{z_A,z_B  } \Pr\{(x_A,z_A, x_B, z_B) | s_x, s_z\} \rho_{\mathcal N} (x_A, z_A, x_B, z_B) \right]
+
+When you fix $(x_A,z_A)$, this implies $x_B = - x_A, z_B = -z_A$. Now note:
+
+%eq
+    \Pr \left\{ (x_A, z_A, x_B, z_B) | s_x, s_z  \right\} &= \mathbbm{1}_{x_B = s_x-x_A} \mathbbm{1}_{z_B =s_z -z_A} \Pr\{(x_A, z_A) | s_x, s_z\}\\
+    &\eqtext{(A1)} \mathbbm{1}_{x_B = s_x -x_A} \mathbbm{1}_{z_B = s_z -z_A} \Pr\{x_A | s_x\} \Pr\{z_A | s_z\} \\
+    &\eqtext{(R1)} \mathbbm{1}_{x_B= s_x- x_A} \mathbbm{1}_{z_B = s_z-z_A} \frac{1}{d^2}
+
+So now:
+%eq
+    \ref{eq:cqmac1} &= H\left[\sum_{s_x} \sum_{s_z} \frac{1}{d^2} \sum_{\substack{x_A,x_B : \\  x_A \oplus x_B = s_x} }\sum_{\substack{z_A,z_B : \\ z_A \oplus z_B = s_z} } \frac{1}{d^2}  \rho_{\mathcal N} (x_A, z_A, x_B, z_B) \right]\\
+    &= H\left[\sum_{s_x} \sum_{s_z} \frac{1}{d^2} \sum_{x_A}\sum_{x_B } \frac{1}{d^2} \rho_{\mathcal N} (x_A, z_A, s_x-x_A, s_z-z_A) \right]\\
+    &= H\left[\sum_{s_x} \sum_{s_z} \frac{1}{d^2}\sum_{x_A}\sum_{x_B } \frac{1}{d^2}(I \otimes \mathcal N \otimes I) \circ (I \otimes W_{x_A,z_A}\otimes W_{s_x - x_A, s_z - z_A} \otimes I) \psi_{\text{max}} \otimes \psi_\text{max}\right]\\
+    &= H\left[(I \otimes \mathcal N \otimes I) \circ \sum_{s_x} \sum_{s_z}\sum_{x_A}\sum_{x_B } \frac{1}{d^4} (I \otimes W_{x_A,z_A}\otimes W_{s_x - x_A, s_z - z_A} \otimes I) \psi_{\text{max}} \otimes \psi_\text{max}\right]
+
+
+%res(shifted_weyl_operators_are_orthogonal)[weyl_operators]
+    Let $W_{x_A,z_A}$ be the $d$ dimensional Weyl operators on a space $\Hi$, for $x_A,z_A \in [0,d)_\Z$.
+    
+    Let $s_x, s_z \in [0,d)_\Z$.
+    Then:
+    %neq
+        \sum_{x}\sum_{z} \frac{1}{d^2} W_{x,z} &= I/d\\
+        \sum_{x}\sum_{z} \frac{1}{d^2} W_{s_x - x, s_z - z} &= I/d
+
+This result implies: \todo[inline]{Probably not true, can you actually sparate these out because of the $s_x, s_z$ also being summed?}
+
+%eq
+    \ref{eq:cqmac1} &=H\left[(I\otimes \mathcal N \otimes I) \sum_{s_x} \sum_{s_z} \frac{1}{d^2} I/d^2 \otimes I/d^2\right]\\
+    &=H[(I\otimes \mathcal N \otimes I) I/d^2 \otimes I/d^2]\\
+    &= H[I/d \otimes \mathcal N(I^{\otimes 2}/d^2) \otimes I/d]\\
+    &= 2 H[I/d] + H[\mathcal N(I^{\otimes 2}/d^2)]
+
+## \ref{eq:cqmac2}
+
+%eq
+    \ref{eq:cqmac2} &= \sum_{s_x}\sum_{s_z} \Pr_{s_x, s_z} (s_x,s_z)H\left[\sigma_{(s_x,s_z)}\right]\\
+    &\eqtext{(R1)} \sum_{s_x}\sum_{s_z} \frac{1}{d^2} H\left[\sigma_{(s_x,s_z)}\right]\\
+    &=\sum_{s_x}\sum_{s_z} \frac{1}{d^2}H\left[\sum_{\substack{x_A,x_B : \\  x_A \oplus x_B = s_x} }\sum_{\substack{z_A,z_B : \\ z_A \oplus z_B = s_z} } \frac{1}{d^2}  \rho_{\mathcal N} (x_A, z_A, x_B, z_B) \right]\\
+    &=\sum_{s_x}\sum_{s_z} \frac{1}{d^2}H\left[\sum_{x_A} \sum_{z_A} \frac{1}{d^2} \rho_{\mathcal N}(x_A,z_A,s_x - x_A, s_z - z_A)\right]\\
+    &=\sum_{s_x}\sum_{s_z} \frac{1}{d^2}H\left[\sum_{x_A}\sum_{z_A} \frac{1}{d^2} (I\otimes \mathcal N \otimes I) \circ (I \otimes W_{x_A, z_A} \otimes W_{s_x - x_A, s_z - z_A} \otimes I) \psi_{\text{max}}\otimes \psi_\text{max}\right]\\
+    &\eqtext{$\dagger$-trick} \sum_{s_x}\sum_{s_z} \frac{1}{d^2}H\left[\sum_{x_A}\sum_{z_A} \frac{1}{d^2} (I\otimes \mathcal N \otimes I) \circ (W_{x_A, z_A}^\dagger \otimes I \otimes I\otimes W_{s_x - x_A, s_z - z_A}^\dagger) \psi_{\text{max}} \otimes \psi_\text{max}\right]\\
+    &=\sum_{s_x}\sum_{s_z} \frac{1}{d^2}H\left[(I\otimes \mathcal N \otimes I) \circ \sum_{x_A}\sum_{z_A} \frac{1}{d^2} (W_{x_A, z_A}^\dagger \otimes I \otimes I\otimes W_{s_x - x_A, s_z - z_A}^\dagger) \psi_{\text{max}} \otimes \psi_\text{max}\right]\\
+
+Now focus on the weyl operators: 
+%eq
+    &\sum_{x_A}\sum_{z_A} \frac{1}{d^2} (W_{x_A, z_A}^\dagger \otimes I \otimes I\otimes W_{s_x - x_A, s_z - z_A}^\dagger)\\
+    &=\sum_{x_A}\sum_{z_A} \frac{1}{d^2} (\omega_d^{ x_A z_A} W_{-x_A, -z_A} \otimes I \otimes I\otimes \omega_d^{(s_x - x_A) (s_z - z_A)} W_{x_A-s_x, z_A-s_z })\\
+    &=\sum_{x_A}\sum_{z_A} \frac{1}{d^2}\omega_d^{x_A z_A+(s_x - x_A) (s_z - z_A)} (W_{-x_A, -z_A} \otimes I \otimes I\otimes  W_{x_A-s_x, z_A-s_z })\\
+    &\text{Now we can apply $ I \otimes I \otimes I \otimes W_{s_x, s_z}$ because $H$ is invariant under unitaries.}\\
+    &\mapsto \sum_{x_A}\sum_{z_A} \frac{1}{d^2} \omega_d^{x_A z_A+(s_x - x_A) (s_z - z_A)} (W_{-x_A, -z_A} \otimes I \otimes I\otimes  W_{s_x,s_z} \circ W_{x_A-s_x, z_A-s_z })\\
+    &=\sum_{x_A}\sum_{z_A} \frac{1}{d^2}\omega^{x_A z_A+(s_x - x_A) (s_z - z_A)}_d (W_{-x_A, -z_A} \otimes I \otimes I\otimes  \omega_d^{s_x (z_A-s_z)} W_{x_A, z_A })\\
+    &=\sum_{x_A}\sum_{z_A} \frac{1}{d^2}\omega^{x_A z_A+(s_x - x_A) (s_z - z_A)+s_x (z_A-s_z)}_d (W_{-x_A, -z_A} \otimes I \otimes I\otimes   W_{x_A, z_A }) \label{eq:endweylfocus1}
+
+Now focus on the relative phase:
+%eq
+    &x_A z_A+(s_x - x_A) (s_z - z_A)+s_x (z_A-s_z)\\
+    &=x_A z_A + s_x(s_z - z_A) - x_A(s_z - z_A) + s_x(z_A - s_z)\\
+    &=x_A z_A - x_A(s_z - z_A)\\
+    &=x_A(z_a - (s_z - z_a))\\
+    &= -x_A s_z
+
+This makes:
+%eq
+    \ref{eq:endweylfocus1} &= \sum_{x_A}\sum_{z_A} \frac{1}{d^2}\omega^{-x_A s_z}_d (W_{-x_A, -z_A} \otimes I \otimes I\otimes   W_{x_A, z_A })\\
+
+Now going back to \ref{eq:cqmac2}:
+%eq
+    \ref{eq:cqmac2} &= \sum_{s_x}\sum_{s_z} \frac{1}{d^2}H\left[(I\otimes \mathcal N \otimes I) \circ \sum_{x_A}\sum_{z_A} \frac{1}{d^2} \omega^{-x_A s_z}_d (W_{-x_A, -z_A} \otimes I \otimes I\otimes   W_{x_A, z_A }) \psi_{\text{max}} \otimes \psi_\text{max}\right]\\
+    &= \sum_{s_x}\sum_{s_z} \frac{1}{d^2}H\left[(I\otimes \mathcal N \otimes I) \circ \sum_{x_A}\sum_{z_A} \frac{1}{d^2} \omega^{-x_A s_z}_d  \Phi_{-x_A,-z_A} \otimes \Phi_{x_A,z_A}\right]\\

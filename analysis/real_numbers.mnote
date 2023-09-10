@@ -1,0 +1,10 @@
+
+%def(dedekind_cuts)[rational_numbers]
+    The 
+
+%def(real_numbers)[rational_numbers, dedekind_cuts, ordered_field]
+    The set of real numbers $(\R,+,-,*,\le)$ is an ordered field that can be defined as one of the following:
+    %enum
+        %i The set of dedekind cuts of the rational numbers.
+        %i The set of all numbers that can be represented as a decimal number.
+        %i The unique linearly ordered field that is complete (up to isomorphism).

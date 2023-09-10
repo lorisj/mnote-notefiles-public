@@ -1,0 +1,60 @@
+# Introduction
+
+%todo add basic computability stuff
+
+%def(complexity_theory)
+    Complexity theory is the study of resource usage, whether that resource is time, space, entanglement, or something else.
+
+%def(resource)[complexity_theory]
+    %enum
+        %i Time
+        %i Space
+        %i Time-space product, so if you have more space you need less time, etc.
+        %i Randomness
+        %i Entanglement
+
+%def(language)[complexity_theory]
+    A language is a set $L \subseteq \Sigma^*$ for some alphabet set $\Sigma$. 
+    This can equivalently be thought of as the corresponding indicator function $\chi_L$.
+%def(time_of_language)[resource]
+    Given a language $L$ and turing machine $M$, we say $M$ accepts $L$ in time $O(T(n))$ if the function:
+    %neq
+        n \mapsto \left(\max_{\substack{x \in L \\ \text{len}(x) = n}} \text{time taken by $M$ to accept $x$}\right) = O(T(n))
+%def(complexity_class)[complexity_theory]
+    A complexity class is some class of languages.
+
+%def(DTIME)[complexity_class]
+    $\text{DTIME(f(n))}$ is the class of languages that can be decided by a deterministic Turing machine in $O(f(n))$ time.
+    Assume that you have the number of tapes that you need.
+
+%def(P)[complexity_class]
+    $P$ is a complexity class defined by:
+    %neq
+        P &\eqdef \bigcup_{k \geq 0} \text{DTIME}(n^k)\\
+        &\eqdef \text{DTIME}(\text{poly}(n))
+    where $n$ is the length of the input.
+
+%exp(primes)[P]
+    Define:
+    %neq
+        \text{PRIMES} = \{x \in \omega : x \text{ is a prime number}\}
+    There is a paper called PRIMES is in P.
+
+
+%def(NTIME)[complexity_class]
+    $\text{NTIME(f(n))}$ is the class of languages that can be decided by a non-deterministic Turing machine in $O(f(n))$ time.
+    Assume that you have the number of tapes that you need.
+
+%res(dtime_implies_ntime)[complexity_class]
+    $\text{DTIME}(f(n)) \subseteq \text{NTIME}(f(n))$
+
+%def(NP)[complexity_class]
+    %neq
+        NP &\eqdef \bigcup_{k \geq 0} \text{NTIME}(n^k)\\
+        &\eqdef \text{NTIME}(\text{poly}(n))
+    where $n$ is the length of the input.
+    Or equivalently:
+    %neq
+        L  \in \text{NTIME} \iff \exists_{M}^{\text{TM}} \forall_{x}^L \exists_{c}^\Sigma M(c, \cdot)\\
+        \text{where both } M(c, \cdot)  \text{and } |c| \text{ have polynomial complexity.} 
+    where $n$ is the length of the input.

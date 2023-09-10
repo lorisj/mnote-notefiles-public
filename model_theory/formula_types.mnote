@@ -1,0 +1,17 @@
+# Different types of formulas
+%def(universal_formula)[L_formula]
+    The set of universal formulas are defined as starting from quantifier free formulas, and closing under $\forall$:
+    %neq
+        \phi(x,\bar y) \in \mathcal L_{\forall} \implies \forall x \phi(x, \bar y) \in \mathcal L_{\forall}
+    Where $\mathcal L_A$ is initially defined as the set of quantifier free $\mathcal L$-formulas, and then is closed under $\forall$. 
+    
+    A general formula will be of the form:
+    %neq
+        \forall_{x_1} \ldots \forall_{x_\alpha} \phi(x_1, \ldots, x_\alpha, \bar y)\\
+        \text{s.t. } \phi \text{ is quantifier free}
+
+%def(universal_horn_formula)[universal_formula]
+    A universal Horn formula is a universal formula of the form:
+    %neq
+        \forall_{x_1, \ldots x_\alpha} \phi(x_1, \ldots, x_\alpha, \bar y) \implies \psi(x_1, \ldots, x_\alpha, \bar y)\\
+        \text{s.t. } \phi, \psi \text{ are quantifier free}

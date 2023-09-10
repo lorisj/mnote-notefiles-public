@@ -1,0 +1,66 @@
+# Informal definitions
+
+%def(machine_learning)
+    A computer program learns from an experience $E$  with respect to a class of tasks $T$ and performance measure $P$ if its performance at tasks in $T$ measured by $P$ improves from using $E$.
+
+%def(loss_function)[machine_learning]
+            Consider:
+            %enum
+                %i Feature space $X$
+                %i Label space $Y$
+            Then $L$ is some loss function $L: Y \times Y \rightarrow \R$, where: 
+            $L(f(x),y) $ is the loss predicting $f(x)$ when the true label is $y$.
+
+%def(learning_problem)[machine_learning, loss_function]
+    A learning problem is a tuple 
+    %neq
+        (X, Y, L, F)
+    %enum
+        %i $X$ is the input space, also called the feature space.
+        %i $Y$ is the output space, also called the label space.
+        %i $L$ is some loss function.
+        %i $F$ is a set of functions $f: X \rightarrow Y$. 
+    The goal is to get as close as in $F$ to the function:
+    %neq
+        f^* \eqdef \argmin_{y \in Y} L(f(x),y)
+
+
+%def(supervised_learning_problem)[learning_problem]
+    Consider 
+    %enum
+        %i Learning problem $(X, Y, L,  F)$
+        %i Training dataset $T \subseteq (X \times Y)^{<\omega}$
+        %i $ D$ as some probability measure over $X \times Y$.
+    A supervised learning problem is a learning problem
+    %neq
+        (X, Y, L, F, T,  D)
+
+%def(training_error)[learning_problem]
+    Consider
+    %item
+        %i $(X, Y, L, F)$ a supervised learning problem
+        %i $f \in F$ a function
+    Define the loss of a function $f$:
+    %item
+        %i
+        %neq
+            L(y_i, f(x_i)) \eqdef \mathbbm{1}_{y_i \neq f(x_i)}
+        %i
+        %neq
+            E_n(f) &= \frac{1}{n} \sum_{i \in n} L(f(x_i), y_i)\\
+            &= \frac{1}{n} \sum_{i \in n} L(y_i, f(x_i))
+%def(linear_classifier)[supervised_learning_problem]
+    Let $(X, \langle \cdot, \cdot \rangle)$ be some inner product space. Consider any learning problem $(X,\{0,1\}, F,T,D)$. 
+    
+    A linear classifier learns: 
+    %enum
+        %i $\vec w \in X$ 
+        %i $r \in \R$
+    such that: 
+    %neq
+        f(x) \eqdef \begin{cases}1 &   \langle \vec w, \vec x\rangle  > r \\ -1 & \text{o.w.} \end{cases}\\
+    is a good predictor for $D$.
+    %exp(linear_classifier_visualization)
+        Being parallel to the hyperplane is the same as being orthogonal to the normal vector $\vec w$. Thus if the inner product between $\vec x$ and $\vec w$ is positive, then $\vec x$ is on the same side of the hyperplane as $\vec w$ and if it is negative, then it is on the other side. The separating plane can be thought of $\{ \vec x \in X | \langle \vec w | \vec x \rangle = b\}$
+        \todo[inline]{Make this in inkscape, 3D makes more sense}
+Every plane in $\R^n$ can be characterized by its normal vector $w$, plus some offset $r\in \R$ (i.e. how much you go from the origin along the normal vector before you hit the plane). We then classify by whether a vector in $X$ is along the same direction as the normal vector with offset $r$, i.e. $\langle w , x \rangle > r$.

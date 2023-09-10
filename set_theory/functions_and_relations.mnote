@@ -1,0 +1,25 @@
+
+%def(relation)[function]
+    %todo Decide whether functions or relations are the base objects. 
+
+%def(function)[set]
+    A function is a
+%def(set_is_relation_transitive)[set, relation]
+    Consider
+    %item
+        %i Set $S$
+        %i Relation $R \subseteq S^2$
+    $S$ is said to be $R$ transitive (or just transitive) iff:
+    %neq
+        \forall_{y R x R X } y R X
+    i.e.:
+    %ccd
+        y \arrow[r] \arrow[r] \arrow[rr, dotted, bend right] & x \arrow[r] & X
+    %def(transitive_set)[set]
+        Consider
+        %item
+            %i Set $S$
+        $S$ is said to be transitive iff $S$ is $\epsilon$ transitive. Equivalently:
+        %neq
+            \in_{S} = \subseteq_S\\
+            S \subseteq \mathcal P(S)

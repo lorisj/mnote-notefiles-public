@@ -1,0 +1,12 @@
+# Introduction
+In this note, we give the definition of language, as well as the definition of a structure.
+
+%def(first_order_language)
+    A language $\mathcal{L}$ is a set that consists of
+
+
+%def(L_structure)[first_order_language]
+    A 
+
+%def(L_formula)[first_order_language]
+    A 

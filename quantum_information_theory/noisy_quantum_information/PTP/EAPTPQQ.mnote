@@ -1,0 +1,11 @@
+#Introduction
+This note gives a summary of the entanglement assisted communication over a quantum channel.
+
+
+
+%def(weyl_operators)
+    Let $\H$ be a Hilbert space of dimension $d$. The Weyl operators on $\H$ are defined as:
+    %neq
+        X_x \eqdef \sum_{j=0}^{d-1} |j+x\rangle\langle j|\\
+        Z_{z} \eqdef \sum_{j=0}^{d-1} \omega^{jz} |j\rangle\langle j|\\
+        W_{x,z} \eqdef X_x Z_z
